@@ -1,0 +1,52 @@
+﻿@model IEnumerable<Answer>
+
+    <body style='  background: linear-gradient(to top, #fddb92 0%, #d1fdff 100% );'>
+       
+
+        <br />
+        <div class="jumbotron">
+            <button type="button" class="btn btn-outline-primary btn-lg btn-block">
+                <h2>Answer List</h2>
+            </button>
+            <br />
+            <br />
+            <form method="post">
+                @if (Model.Count() > 0)
+                {
+                    <div class="tablebg">
+                        <table class="table">
+                            <tr>
+                                <th>AnswerID</th>
+                                <th>AnswerInput</th>
+                                <th>QuestionID</th>
+                                <th>ReferenceURL</th>
+                                <th>UserID</th>
+                            </tr>
+                            @foreach (var item in Model)
+                            {
+                        <tr>
+                            <td> <a href="/Answer/ViewAnswer/@item.AnswerID">@item.AnswerID</a></td>
+                            <td> <a href="/Answer/ViewAnswer/@item.AnswerID">@item.AnswerInput</a></td>
+                            <td>@item.QuestionID</td>
+                            <td>@item.ReferenceURL</td>
+                            <td>@item.UserID</td>
+                            <td> 
+                                <a href="/Answer/EditAnswer/@item.AnswerID" class="btn btn-success btn-sm">Edit</a>
+                            </td>
+                        </tr>
+                            }
+
+                        </table>
+                    </div>
+                    <br />
+                    <a class="btn btn-outline-success btn-lg btn-block" href="/Answer/CreateAnswer"> Create New Answer</a>
+                    <br />
+                }
+                else
+                {
+                    <p>No Answers Available</p>
+                }
+            </form>
+        </div>
+    </body>
+    

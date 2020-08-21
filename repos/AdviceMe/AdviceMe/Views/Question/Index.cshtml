@@ -1,0 +1,58 @@
+﻿@model IEnumerable<Question>
+    <body style='        background: linear-gradient(to right, #ffecd2 0%, #fcb69f 100% );'>
+
+
+        <br />
+        <div class="jumbotron">
+            <button type="button" class="btn btn-outline-primary btn-lg btn-block">
+                <h2>Question List</h2>
+            </button>
+            <br />
+            <br />
+           
+            <form method="post">
+                @if (Model.Count() > 0)
+                {
+
+
+                    <div class="tablebg">
+                        <table class="table">
+                            <tr>
+                                <th>Question ID</th>
+                                <th>Question Input</th>
+                                <th>Category ID</th>
+                                <th>User ID</th>
+                                <th>Action</th>
+
+                            </tr>
+
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+
+                                    <td> <a href="/Question/ViewQuestion/@item.QuestionID">@item.QuestionID</a></td>
+                                    <td> <a href="/Question/ViewQuestion/@item.QuestionID">@item.QuestionInput</a></td>
+                                    <td>@item.CategoryID</td>
+                                    <td>@item.UserID</td>
+                                    <td>
+
+                                        <a href="/Question/EditQuestion/@item.QuestionID" class="btn btn-success btn-sm">Edit</a>
+                                        
+                                    </td>
+                                </tr>
+
+                            }
+
+                        </table>
+                    </div>
+                    <br />
+                    <a class="btn btn-outline-success btn-lg btn-block" href="/Question/CreateQuestion"> Create New Question</a>
+                    <br />
+                }
+                else
+                {
+                    <p>No Questions Available</p>
+                }
+            </form>
+            </div>
+    </body>

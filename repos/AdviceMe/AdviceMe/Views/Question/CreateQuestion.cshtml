@@ -1,0 +1,84 @@
+﻿@model Question
+    <body style=' background: linear-gradient(to right, #74ebd5 0%, #9face6 100%);'>
+
+        <br />
+        <h2 class="text-info">Create New Question</h2>
+        <br />
+
+        @*
+          <div class="border container" style="padding:30px">
+            @using (Html.BeginForm("InsertQuestionToDatabase", "Question", "Post"))
+            {
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="QuestionInput"></label>
+                    </div>
+                    <div class="col-6">
+                        <input asp-for="QuestionInput" class="form-control" />
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="UserID"></label>
+                    </div>
+                    <div class="col-6">
+                        <input asp-for="UserID" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="CategoryID"></label>
+                    </div>
+                    <div class="col-6">
+                        <select>
+                            @foreach (var cat in Model.Categories)
+                            {
+                                <option value="@cat.CategoryID">@cat.CategoryID @cat.Name </option>
+                            }
+                        </select>
+                    </div>
+
+                </div>
+
+
+                <div class="form-group row">
+                    <div class="col-3 offset-4">
+                        <input type="submit" value="Create" class="btn btn-primary form-control" />
+                    </div>
+                    <div class="col-3">
+                        <a href="/Question/Index" class="btn btn-success form-control">Back to List</a>
+                    </div>
+                </div>
+            }
+        </div>
+
+        *@
+
+
+        @using (Html.BeginForm("InsertQuestionToDatabase", "Question", "Post"))
+        {
+            <input asp-for="QuestionID" type="hidden" value="" />
+            <label asp-for="QuestionInput" class="control-label">Question Input</label>
+            <input type="text" name="QuestionInput" class="form-control" value="" />
+            <label asp-for="UserID" class="control-label">User ID</label>
+            <input type="number" name="UserID" class="form-control" />
+
+            <div class="form-group">
+                <label for="">Select a Category</label>
+                <select class="form-control" name="CategoryID" value="">
+                    @foreach (var cat in Model.Categories)
+                    {
+                        <option value="@cat.CategoryID">@cat.CategoryID @cat.Name</option>
+                    }
+                </select>
+            </div>
+            //<input type="submit" value="Create Question" class="btn btn-primary" />
+            <a class="btn btn-outline-success btn-lg btn-block" href="/Question/CreateQuestion"> Create New Question</a>
+        }
+        <br />
+
+        <div class="col-2 offset-5">
+            <a href="/Question/Index" class="btn btn-success form-control">Back to List</a>
+        </div>
+    </body>

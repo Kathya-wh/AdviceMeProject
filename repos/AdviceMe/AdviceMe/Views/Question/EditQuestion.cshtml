@@ -1,0 +1,47 @@
+﻿@model Question
+<br />
+<h2 class="text-info">Edit Question</h2>
+<br />
+<div class="border container" style="padding:30px">
+    @using (Html.BeginForm("UpdateEditQuestion", "Question", "Post"))
+    {
+        <div class="col-6">
+            <input asp-for="QuestionID" type="hidden" value="@Model.QuestionID" />
+        </div>
+        <div class="form-group row">
+            <div class="col-4">
+                <label asp-for="QuestionInput">Question Input</label>
+            </div>
+            <div class="col-6">
+                <input asp-for="QuestionInput" class="form-control" value="@Model.QuestionInput" />
+            </div>
+        </div>
+       
+        <div class="form-group row">
+            <div class="col-4">
+                <label asp-for="CategoryID">Category ID</label>
+            </div>
+            <div class="col-6">
+                <select>
+                    @foreach (var cat in Model.Categories)
+                    {
+                        <option value="@cat.CategoryID">@cat.CategoryID  @cat.Name</option>
+                    }
+                </select>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-3 offset-4">
+                <input type="submit" value="Update" class="btn btn-primary form-control" />
+            </div>
+            <div class="col-3">
+                <a href="/Question/Index" class="btn btn-success form-control">Back to List</a>
+            </div>
+        </div>
+    }
+</div>
+
+
+
+
+
