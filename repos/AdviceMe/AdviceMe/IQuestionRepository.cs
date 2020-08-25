@@ -1,4 +1,5 @@
 ﻿using AdviceMe.Models;
+using Microsoft.AspNetCore.SignalR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,9 +14,11 @@ namespace AdviceMe
         public Question GetQuestion(int questionID);
         public IEnumerable<Category> GetAllCategories();
         public Question AssignCategory();
-        public void UpdateQuestion(Question question);
+       // public void UpdateQuestion(Question question);
         public void CreateQuestion(Question question);
         public void EditQuestion(Question question);
+        public void DeleteQuestion(Question question);
+        
         
     }
 

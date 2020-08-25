@@ -1,22 +1,72 @@
 ﻿@model Question
+<h3>@Model.QuestionInput</h3>
 
-    <h3>Question</h3>
 
-    <table class="table">
-        <tr>
-            <th>Question ID</th>
-            <th>Question Input</th>
-            <th>Category ID</th>
-            <th>User ID</th>
+            <table class="table">
+                <tr>
+                    <th>Question ID</th>
+                    <th>Question Input</th>
+                    <th>Category ID</th>
+                    <th>User ID</th>
 
-        </tr>
+                </tr>
 
-        <tr>
-            <td>@Model.QuestionID</td>
-            <td>@Model.QuestionInput</td>
-            <td>@Model.CategoryID</td>
-            <td>@Model.UserID</td>
+                <tr>
+                    <td>@Model.QuestionID</td>
+                    <td>@Model.QuestionInput</td>
+                    <td>@Model.CategoryID</td>
+                    <td>@Model.UserID</td>
 
-        </tr>
+                </tr>
 
-    </table>
+            </table>
+        <div style="display: block">
+                @using (Html.BeginForm("DeleteQuestion", "Question", "Post"))
+                {
+                    <input type="hidden" asp-for="QuestionID" value="@Model.QuestionID" />
+                    <input type="submit" onclick="return confirm('Are you sure?')" value="Delete this question" />
+                }
+        </div>
+
+            @*@model Book
+                <br />
+                <div class="container row p-0 m-0">
+                    <div class="col-9">
+                        <h2 class="text-info">@Model.BookTitle Info</h2>
+                    </div>
+                    <div class="col-3">
+                        <a class="btn btn-info form-control text-white" href="/Book/CreateBook"> Create New Book</a>
+                    </div>
+                </div>
+                <div class="col-12 border p-3 mt-3 ">
+                    <form method="post">
+                        <table class="table table-striped border">
+                            <tr>
+                                <th>BookID</th>
+                                <th>Book Title</th>
+                                <th>Book Isbn</th>
+                                <th>Book Auhtor </th>
+                                <th>Book Catgeory</th>
+                                <th>Actions</th>
+                            </tr>
+                            <tr>
+                                <td>@Model.BookID</td>
+                                <td>@Model.BookTitle</td>
+                                <td>@Model.BookIsbn</td>
+                                <td>@Model.BookAuthorID</td>
+                                <td>@Model.BookCategoryID</td>
+                                <td>
+                                    <a href="/Book/EditBook/@Model.BookID" class="btn btn-success btn-sm">Edit</a>
+                                    <button class="btn btn-danger btn-sm">Delete</button>
+                                </td>
+                            </tr>
+                        </table>
+                        <div style="display: block">
+                            @using (Html.BeginForm("DeleProduct", "Product", "Post"))
+                            {
+                                <input type="hidden" asp-for="BookID" value="@Model.BookID" />
+                                <input type="submit" onclick="return confirm('Are you sure?')" value="Delete this product" />
+                            }
+                        </div>
+                    </form>
+                </div>*@

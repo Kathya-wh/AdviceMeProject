@@ -7,6 +7,7 @@ using System.Data;
 using System.Linq;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
+//using Ubiety.Dns.Core;
 
 namespace AdviceMe
 {
@@ -40,19 +41,33 @@ namespace AdviceMe
             return question;
         }
 
+       /* public void UpdateQuestion(Question question)
+        {
+            _connection.Execute("UPDATE questions SET QuestionInput = @questionInput WHERE QuestionID = @id",
+                new {questionInput = question.QuestionInput, id = question.QuestionID });
+        }*/
 
         public void CreateQuestion(Question question)
         {
-            _connection.Execute("INSERT INTO questions (QuestionInput, CategoryID,UserID) VALUES (@questionInput, @categoryID, @userID)",
+            _connection.Execute("INSERT INTO questions (QuestionInput, CategoryID, UserID) VALUES (@questionInput, @categoryID, @userID)",
                 new {questionInput = question.QuestionInput, categoryID = question.CategoryID, userID = question.UserID });
            
         }
         public void EditQuestion(Question questionToEdit)
         {
-            _connection.Execute("UPDATE INTO questions SET QuestionInput = @questionInput, CategoryID = @categoryID WHERE QuestionID = @questionID ",
+            _connection.Execute("UPDATE questions SET QuestionInput = @questionInput, CategoryID = @categoryID WHERE QuestionID = @questionID ",
             new { questionInput = questionToEdit.QuestionInput, categoryID = questionToEdit.CategoryID, questionID = questionToEdit.QuestionID });
         }
-       
+        public void DeleteQuestion(Question question)
+        {
+            _connection.Execute("DELETE FROM questions WHERE QuestionID = @id;", 
+                new { id = question.QuestionID});
+        }
+
+       // public void UpdateQuestion(Question question)
+        //{
+            //throw new NotImplementedException();
+      // }
     }
 }
 

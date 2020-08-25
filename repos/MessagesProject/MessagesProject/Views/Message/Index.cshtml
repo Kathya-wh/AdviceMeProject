@@ -1,0 +1,27 @@
+﻿@model IEnumerable<Message>
+
+
+
+<table class="table">
+    <tr>
+        <th>Message ID</th>
+        <th>Message Input</th>
+        <th>Category ID</th>
+        <th>User ID</th>
+
+    </tr>
+
+    @foreach(var message in Model)
+    {
+        <tr>
+            <td>@message.MessageID</td>
+            <td>@message.MessageInput</td>
+            <td>@message.CategoryID</td>
+            <td>@message.UserID</td>
+
+        </tr>
+    }
+
+
+
+</table>

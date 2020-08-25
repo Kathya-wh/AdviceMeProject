@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Threading.Tasks;
 using AdviceMe.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -16,9 +17,6 @@ namespace AdviceMe.Controllers
         {
             _repo = repo;
         }
-
-
-
 
 
         public IActionResult Index()
@@ -39,6 +37,13 @@ namespace AdviceMe.Controllers
             var question = _repo.AssignCategory();
             return View(question);
         }
+
+        //public IActionResult InsertQuestion()
+        //{
+            //var ques = _repo.AssignCategory();
+            //return View(ques);
+        //}
+
         public IActionResult InsertQuestionToDataBase(Question questionToInsert)
         {
             _repo.CreateQuestion(questionToInsert);
@@ -52,23 +57,28 @@ namespace AdviceMe.Controllers
 
             if (ques == null)
             {
-                return View("Question not found");
+                return View("QuestionNotFound");
             }
             return View(ques);
         }
-        public IActionResult UpdateQuestion(int id)
-        {
-            Question ques = _repo.GetQuestion(id);
+        /*public IActionResult UpdateQuestion(int id)
+       {
+           Question ques = _repo.GetQuestion(id);
             if (ques == null)
             {
                 return View("QuestiontNotFound");
             }
             return View(ques);
-        }
+        }*/
         public IActionResult UpdateQuestionToDatabase(Question question)
         {
-            _repo.UpdateQuestion(question);
-            return RedirectToAction("ViewProduct", new { id = question.QuestionID });
+            _repo.EditQuestion(question);
+            return RedirectToAction("ViewQuestion", new { id = question.QuestionID });
+        }
+        public IActionResult DeleteQuestion(Question question)
+        {
+            _repo.DeleteQuestion(question);
+            return RedirectToAction("Index");
         }
 
     }

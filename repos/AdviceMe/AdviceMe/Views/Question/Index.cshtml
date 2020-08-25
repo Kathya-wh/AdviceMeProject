@@ -9,7 +9,7 @@
             </button>
             <br />
             <br />
-           
+
             <form method="post">
                 @if (Model.Count() > 0)
                 {
@@ -37,7 +37,7 @@
                                     <td>
 
                                         <a href="/Question/EditQuestion/@item.QuestionID" class="btn btn-success btn-sm">Edit</a>
-                                        
+
                                     </td>
                                 </tr>
 
@@ -56,3 +56,49 @@
             </form>
             </div>
     </body>
+
+
+@*@model IEnumerable<Question>
+<br />
+<div class="container row p-0 m-0">
+    <div class="col-9">
+        <h2 class="text-info">Questions</h2>
+    </div>
+    <div class="col-3">
+        <a class="btn btn-info form-control text-white" href="/Question/CreateQuestion"> Create New Question</a>
+    </div>
+</div>
+<div class="col-12 border p-3 mt-3 ">
+    <form method="post">
+        @if (Model.Count() > 0)
+        {
+            <table class="table">
+                <tr>
+                    <th>ID</th>
+                    <th>QuestionInput</th>
+                    <th>Category ID</th>
+                    <th>User ID</th>
+                   
+                </tr>
+                @foreach (var question in Model)
+                {
+                    <tr>
+                        <td><a href=/Question/ViewQuestion/@question.QuestionID>@question.QuestionID</a></td>
+                        <td>@question.QuestionInput</td>
+                        <td>@question.CategoryID</td>
+                        <td>@question.UserID</td>
+                        
+                        <td>
+                            <a href="/Question/EditQuestion/@question.QuestionID" class="btn btn-success btn-sm">Edit</a>
+                        </td>
+                    </tr>
+                }
+            </table>
+        }
+        else
+        {
+            <p>No Questions Available</p>
+        }
+    </form>
+</div>
+*@

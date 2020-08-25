@@ -12,6 +12,8 @@ using NewAdviceMe.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System.Data;
+using MySql.Data.MySqlClient;
 
 namespace NewAdviceMe
 {
@@ -27,6 +29,21 @@ namespace NewAdviceMe
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped<IDbConnection>((s) =>
+            {
+                IDbConnection connection = new MySqlConnection(Configuration.GetConnectionString("adviceme"));
+                connection.Open();
+                return connection;
+            });
+
+            services.AddTransient<IQuestionRepository, QuestionRepository>();
+            //services.AddTransient<IAnswerRepository, AnswerRepository>();
+
+            services.AddControllersWithViews();
+
+
+
+
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
